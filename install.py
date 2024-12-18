@@ -1,6 +1,6 @@
 import pygame
 
-WINDOW_WIDTH = 1000
+WINDOW_WIDTH = 2000
 WINDOW_HEIGHT = 1000
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 score = 0
@@ -21,8 +21,10 @@ player_me = 1
 player_more = +1
 apple = 1
 "Draw"
-
+size = 4
+player_image_size = 4
 background = (105, 64, 104)
+
 
 
 
@@ -67,6 +69,10 @@ running = True
 while running:
     display_surface.blit(player_image, player_rect)
     keys = pygame.key.get_pressed()
+    if keys[pygame.K_o] and score:
+        score += 100
+    if keys[pygame.K_e] and display_surface:
+        display_surface.fill(CYAN)
     if keys[pygame.K_0] and running:
         running = False
     if keys[pygame.K_6] and player_more:
