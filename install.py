@@ -1,7 +1,7 @@
 import pygame
 
-WINDOW_WIDTH = 400
-WINDOW_HEIGHT = 400
+WINDOW_WIDTH = 1000
+WINDOW_HEIGHT = 1000
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 score = 0
 BLACK = (0, 0, 0)
@@ -32,13 +32,15 @@ background = (105, 64, 104)
 
 
 
+player_image = pygame.image.load("red-box-background (1).jpg")
+player_rect = player_image.get_rect()
+player_rect.left = 0
+player_rect.centery = WINDOW_HEIGHT // 2
 
 
 
 
-
-
-
+"player_rect.y -= PLAYER_VELOCITY"
 
 
 
@@ -54,7 +56,7 @@ pygame.draw.circle(display_surface, colore, CENTER, RADIUS)
 
 loop_count = 1
 my_sum = 0
-while loop_count <=10:
+while loop_count <=2:
     my_sum +=loop_count
     loop_count += 1
     print(f"The sum is {my_sum}")
@@ -63,8 +65,23 @@ while loop_count <=10:
 
 running = True
 while running:
+    display_surface.blit(player_image, player_rect)
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_0] and running:
+        running = False
+    if keys[pygame.K_6] and player_more:
+        player_rect.x += player_more
+    if keys[pygame.K_5] and player_more:
+        player_rect.x -= player_more
+    if keys[pygame.K_4] and player_more:
+        player_rect.y -= player_more
+    if keys[pygame.K_3] and player_more:
+        player_rect.y += player_more
+    if keys[pygame.K_1] and display_surface:
+        display_surface.fill(color)
+        if keys[pygame.K_2] and display_surface:
+            display_surface.fill(MAGENTA)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     pygame.display.update()
-    "if press w display_surface.fill(color)"
